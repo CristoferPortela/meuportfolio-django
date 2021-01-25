@@ -9,7 +9,7 @@ def home(request):
         request,
         'mainpage/index.html',
         {
-            'title':'IdeiaScript Home',
+            'title':'IdeiaScript',
             'year':datetime.now().year,
         }
     )
