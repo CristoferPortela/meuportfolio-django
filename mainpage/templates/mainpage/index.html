@@ -1,0 +1,23 @@
+﻿{% extends 'mainpage/base/base.html' %}
+
+{% load static %}
+{% block 'content' %}
+
+{% include 'mainpage/base/header.html' %}
+
+{% include 'mainpage/about-services.html' %}
+
+{% include 'mainpage/portfolio.html' %}
+     
+{% include 'mainpage/prices.html' %}
+
+{% include 'mainpage/social.html' %}
+
+{% include 'mainpage/contact.html' %}
+        <!--
+			<section id="google-map">
+				<div id="map-canvas" class="wow animated fadeInUp"></div>
+			</section>
+		-->
+    </main>
+{% endblock %}
