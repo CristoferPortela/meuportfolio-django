@@ -18,6 +18,8 @@ class AboutMe(models.Model):
 
     role = models.CharField('role', choices=ROLES_ALLOWED, max_length=5)
 
+    professional_xp = models.TextField('Professional experience', default="")
+
     avatar = models.ImageField(
         'my pic', 
         name="avatar", 
@@ -29,4 +31,16 @@ class AboutMe(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Service(models.Model):
+    """
+    The services we offer
+    """
+
+    title = models.CharField('service name', max_length=100)
+    icon = models.CharField('icon to describe it', max_length=100)
+    description = models.CharField('description', max_length=100)
+
+    def __str__(self):
+        return self.title
     
