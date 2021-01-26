@@ -1,14 +1,13 @@
 from datetime import datetime
 from django.shortcuts import render
-from .models import AboutMe
+from .models import AboutMe, Service
 
 # Create your views here.
 def home(request):
     """Renders the home page."""
 
     me = AboutMe.objects.filter(role='admin').first()
-
-    print(me)
+    services = Service.objects.all()
 
     return render(
         request,
@@ -17,5 +16,6 @@ def home(request):
             'title':'IdeiaScript',
             'year':datetime.now().year,
             'about_me':me,
+            'services': services
         }
     )
