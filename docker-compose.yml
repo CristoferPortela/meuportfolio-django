@@ -16,3 +16,8 @@ services:
             - "8000:8000"
         depends_on:
             - db_
+
+
+# docker-compose run django python manage.py makemigrations
+# docker-compose run django python manage.py migrate
+
