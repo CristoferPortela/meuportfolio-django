@@ -1,0 +1,38 @@
+
+<!-- Price section -->
+<section id="price">
+    <div class="container">
+        <div class="row">
+            <div class="sec-title text-center wow animated fadeInDown">
+                <h2>{{ texts.products_title }}</h2>
+                <p>{{ texts.products_subtitle }}</p>
+            </div>
+            {% for product in products %}
+                <div class="col-md-4 wow animated fadeInUp">
+                    <div class="price-table text-center">
+                    {% comment %} classe featured em caso de promoção {% endcomment %}
+                        <span>{{ product.title }}</span>
+                        <small style="font-size: 1em;">Valores a partir de:</small>
+                        <div class="value">
+                            <span>R$</span>
+                            <span>{{ product.min_price | floatformat:2 }}</span>
+                            <br>
+                            <small style="display: block;">{{ product.short_description }}</small>
+                        </div>
+                        <ul>
+                            {% for benefit in product.benefits.all %}
+                            <li>
+                                {{ benefit.title }}
+                            </li>
+                            {% endfor %}
+                            <li>
+                                <a href="#">Saiba mais</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- end Price section -->

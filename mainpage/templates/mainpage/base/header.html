@@ -8,49 +8,39 @@ Home Slider
 <section id="home-slider">
     <div id="slider" class="sl-slider-wrapper">
 
-        <div class="sl-slider">
-        
-            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+        {% for image in slider  %}
+            <style>
+                .bg-img-{{ image.id }} {
+                    background-image: url({{ image.image.url }})
+                }
+            </style>
+            <div class="sl-slider">
+                <div class="sl-slide" 
+                    data-orientation="horizontal" 
+                    data-slice1-rotation="-25" 
+                    data-slice2-rotation="-25" 
+                    data-slice1-scale="2"
+                    data-slice2-scale="2"
+                >
 
-                <div class="bg-img bg-img-1"></div>
+                <div class="bg-img bg-img-{{ image.id }}"></div>
 
-                <div class="slide-caption">
-                    <div class="caption-content">
-                        <h2 class="animated fadeInDown">BLUE Onepage HTML5 Template</h2>
-                        <span class="animated fadeInDown">Clean and Professional one page Template</span>
-                        <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2 class="animated fadeInDown">{{ image.title }}</h2>
+                            <span class="animated fadeInDown">{{ image.description_text }}</span>
+                            {% if image.has_call_to_action %}
+                                <a href="{{ image.call_to_action_link }}" class="btn btn-blue btn-effect">
+                                    {{ image.call_to_action_text }}
+                                </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                
             </div>
-            
-            <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-            
-                <div class="bg-img bg-img-2"></div>
-                <div class="slide-caption">
-                    <div class="caption-content">
-                        <h2>BLUE Onepage HTML5 Template</h2>
-                        <span>Clean and Professional one page Template</span>
-                        <a href="#" class="btn btn-blue btn-effect">Join US</a>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-                
-                <div class="bg-img bg-img-3"></div>
-                <div class="slide-caption">
-                    <div class="caption-content">
-                        <h2>BLUE Onepage HTML5 Template</h2>
-                        <span>Clean and Professional one page Template</span>
-                        <a href="#" class="btn btn-blue btn-effect">Join US</a>
-                    </div>
-                </div>
+        {% endfor %}
 
-            </div>
-
-        </div><!-- /sl-slider -->
+    </div><!-- /sl-slider -->
 
         <!-- 
         <nav id="nav-arrows" class="nav-arrows">

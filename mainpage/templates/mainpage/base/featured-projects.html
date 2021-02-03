@@ -1,0 +1,36 @@
+{% load static %}
+<!-- portfolio section -->
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="sec-title text-center wow animated fadeInDown">
+                <h2>{{ texts.projects_title }}</h2>
+                <p>
+                    {{ texts.projects_subtitle }}
+                </p>
+            </div>
+            <ul class="project-wrapper wow animated fadeInUp">
+
+                {% for project in projects %}
+                    <li class="portfolio-item">
+
+                        <img src="{{ project.images.first.image.url }}" class="img-responsive" alt="{{ project.images.first.title }}">
+                        <figcaption class="mask">
+                            <h3>{{ project.title }}</h3>
+                            <p>{{ project.short_description }}</p>
+                        </figcaption>
+                        <ul class="external">
+                            <li>
+                                <a href="{% url 'portfolio-item' id=project.id %}">
+                                    {% comment %} <i class="fa fa-link"></i> {% endcomment %}
+                                    Ver
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- end portfolio section -->

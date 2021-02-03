@@ -1,0 +1,24 @@
+<!-- Social section -->
+
+<section id="social" style="background-image: url({{ social_media_bg.first.url }}) !important;" class="parallax">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="sec-title text-center white wow animated fadeInDown">
+                    <h2>{{ texts.social_medias_title }}</h2>
+                    <p>{{ texts.social_medias_title }}</p>
+                </div>
+                <ul class="social-button">
+                {% for media in social_medias %}
+                    <li class="wow animated zoomIn" data-wow-delay="{{ forloop.counter }}s">
+                        <a href="{{ media.link }}">
+                            <i class="{{ media.icon }} fa-2x"></i>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end Social section -->
