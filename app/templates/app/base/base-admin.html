@@ -16,13 +16,13 @@
     
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     
-    {% include 'app/base/stylesheets-load.html' with to_user=False %}
+    {% include 'mainpage/base/stylesheets-load.html' %}
 
 </head>
 
 <body>
     {% block 'content' %}{% endblock %}
 
-    {% include 'app/base/scripts.html' with to_user=False %}
+    {% include 'mainpage/base/scripts.html' with to_user=False %}
 </body>
 
