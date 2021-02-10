@@ -14,6 +14,6 @@ db.sqlite3-journal
 *$py.class
 
 code/
-static/
+./static/
 
 */__pycache__/*
