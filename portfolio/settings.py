@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'mainpage',
     'app',
+    'image',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
