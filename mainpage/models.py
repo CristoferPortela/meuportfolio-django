@@ -1,7 +1,6 @@
 from django.db import models
-from django.db.models.fields import CharField
 from django.utils.translation import ugettext_lazy as _
-
+from image.models import ImageMedia, Slider
 # Create your models here.
 
 class AboutMe(models.Model):
@@ -48,30 +47,6 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
-    
-
-class ProjectImage(models.Model):
-    """
-    The url for project images
-    """
-
-    ROLES = (
-        ('featured','featured',),
-        ('secondary','secondary'),
-    )
-
-    title = models.CharField('the title of the image', max_length=100, default="")
-    image = models.ImageField('image for the project')
-    role = models.CharField('the role of the image in the page', max_length=20, choices=ROLES)
-
-    has_call_to_action = models.BooleanField('has a call to action button?', default=False, null=True, blank=True)
-    call_to_action_link = models.CharField('the call to action link', max_length=255, default="", null=True, blank=True)
-    call_to_action_text = models.CharField('the call to action text', max_length=100, default="", null=True, blank=True)
-
-    description_text = models.CharField('description of the image', max_length=255, default="", null=True)
-
-    def __str__(self):
-        return self.title
 
 class Category(models.Model):
     """
@@ -96,7 +71,7 @@ class Project(models.Model):
 
     full_description = models.TextField('the full description of the project', default="", null=True)
 
-    images = models.ManyToManyField(ProjectImage)
+    images = models.ManyToManyField(ImageMedia)
     category = models.ManyToManyField(Category)
 
     def __str__(self):
@@ -156,18 +131,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.subject
 
-class Slider(models.Model):
-    """
-    A full slider
-    """
-
-    name = models.CharField('name of the slider', max_length=100)
-
-    images = models.ManyToManyField(ProjectImage)
-
-    def __str__(self):
-        return self.name
-
 class MainPage(models.Model):
     """
     The full model of the main page
@@ -194,7 +157,7 @@ class MainPage(models.Model):
     
     social_medias_title = models.CharField(_("social medias section title"), max_length=155, default="Redes sociais")
     social_medias_subtitle = models.CharField(_("social medias section description // subtitle"), max_length=155, default="")
-    social_media_bg = models.ForeignKey(ProjectImage, on_delete=models.PROTECT, default="", blank=True, null=True)
+    social_media_bg = models.ForeignKey(ImageMedia, on_delete=models.PROTECT, default="", blank=True, null=True)
 
     social_medias = models.ManyToManyField(SocialMedia, verbose_name=_("choose the social medias"))
 
