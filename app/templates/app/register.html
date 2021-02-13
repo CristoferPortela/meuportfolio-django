@@ -1,17 +1,24 @@
 {% extends 'app/base/base-admin.html' %}
 {% block 'content' %}
 
-<article class="columns no-pad is-flex-wrap-wrap is-flex is-justify-content-center is-align-items-center has-background-primary" style="height: 100vh; width: 100vw;">
+<article class="register columns no-pad is-flex-wrap-wrap is-flex is-justify-content-center is-align-items-center has-background-primary" style="height: 100vh; width: 100vw;">
     
-    <section class="section column is-one-thirds-mobile">
-        <i class="fa fa-crown bg-icon"></i>
+    <section class="section column is-two-thirds-mobile is-4-desktop">
+        <i class="fa fa-crown bg-icon right"></i>
 
-        <h2 class="title has-text-centered bg-title">{{ title }}</h2>
+        <h2 class="title bg-title has-text-centered-mobile">{{ title }}</h2>
     </section>
 
-    <section class="section column is-one-thirds-desktop is-12-mobile columns is-flex-wrap-wrap">
-        
+    <section class="section column is-6-desktop is-12-mobile columns is-flex-wrap-wrap">
+
         <aside class="column is-two-thirds-desktop">
+            {% if error %}
+                <article class="message is-danger">
+                    <div class="message-header">
+                        <p>Houve um erro, verifique os campos novamente</p>
+                    </div>
+                </article>
+            {% endif %}
             {% if form.message.errors %}
                 <article class="message is-danger">
                     <div class="message-header">
@@ -35,7 +42,7 @@
                 </article>
             {% endif %}
         </aside>
-        
+
         <header class="column is-12">
             <h5 class="no-pad has-text-weight-bold">
                 Deixe seus dados de login para entrar na sua conta
@@ -45,26 +52,44 @@
         <form method="post" class="form column is-two-thirds-desktop">
             {% csrf_token %}
 
-            <p class="control has-icons-left">
+            <p class="control has-icons-left" data-form="name">
                 {% comment %} <label for="id_username" class="label">User name</label> {% endcomment %}
                 {{ form.username }}
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
             </p>
-            <p class="control has-icons-left">
+            <p class="control has-icons-left" data-form="password">
                 {% comment %} <label for="id_password" class="label">Password</label> {% endcomment %}
-                {{ form.password }}
+                {{ form.password1 }}
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
                 </span>
             </p>
+
+            <div class="menu mt-3 has-pointer">
+                <p class="menu-label has-text-dark has-text-weight-bold">
+                    Sobre a senha...
+                </p>
+                {{ form.password1.help_text }}
+            </div>
             <div class="buttons mt-2">
-                <button type="submit" class="button is-warning has-text-weight-bold">Entrar</button>
-                <a class="button is-danger ml-2" href="{% url 'register' %}">Criar conta</a>
+                <button type="submit" class="button is-warning has-text-weight-bold">Criar conta</button>
+                <a class="button is-danger ml-2" href="{% url 'login' %}">Já tem conta?</a>
             </div>
         </form>
     </section>
 </article>
+
+{% endblock %}
+
+{% block 'scripts' %}
+
+<script>
+    document.querySelector('p[data-form=name] input').classList.add('input')
+    document.querySelector('p[data-form=password] input').classList.add('input')
+    document.querySelector('.menu ul').classList.add('menu-list')
+
+</script>
 
 {% endblock %}
