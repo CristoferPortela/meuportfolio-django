@@ -5,24 +5,23 @@
     <meta charset="utf-8">
     <!-- Always force latest IE rendering engine or request Chrome Frame -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Blue One Page HTML Template</title>		
-    <!-- Meta Description -->
-    <meta name="description" content="Blue One Page Creative HTML5 Template">
-    <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-    <meta name="author" content="Muhammad Morshed">
+    <title>{{ title }}</title>		
+
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
     
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     
-    {% include 'mainpage/base/stylesheets-load.html' %}
+    {% include 'app/base/stylesheets-load.html' %}
 
 </head>
 
 <body>
     {% block 'content' %}{% endblock %}
 
-    {% include 'mainpage/base/scripts.html' with to_user=False %}
+    {% include 'app/base/scripts.html' with to_user=False %}
+    {% block 'scripts' %} {% endblock %}
 </body>
 
