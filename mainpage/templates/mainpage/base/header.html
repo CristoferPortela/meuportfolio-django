@@ -27,8 +27,12 @@ Home Slider
 
                     <div class="slide-caption">
                         <div class="caption-content">
-                            <h2 class="animated fadeInDown">{{ image.title }}</h2>
-                            <span class="animated fadeInDown">{{ image.description_text }}</span>
+                            <h2 style="text-transform: none !important;" class="animated fadeInDown">
+                                {{ image.title }}
+                            </h2>
+                            <span style="text-transform: none !important;" class="animated fadeInDown">
+                                {{ image.description_text }}
+                            </span>
                             {% if image.has_call_to_action %}
                                 <a href="{{ image.call_to_action_link }}" class="btn btn-blue btn-effect">
                                     {{ image.call_to_action_text }}
@@ -48,7 +52,7 @@ Home Slider
             <span class="nav-arrow-next">Next</span>
         </nav>
         -->
-        
+        {% if slider|length > 1 %}
         <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
             <a href="javascript:;" class="sl-prev">
                 <i class="fa fa-angle-left fa-3x"></i>
@@ -58,12 +62,13 @@ Home Slider
             </a>
         </nav>
         
-
+        
         <nav id="nav-dots" class="nav-dots visible-xs visible-sm hidden-md hidden-lg">
             <span class="nav-dot-current"></span>
             <span></span>
             <span></span>
         </nav>
+        {% endif %}
 
     </div><!-- /slider-wrapper -->
 </section>

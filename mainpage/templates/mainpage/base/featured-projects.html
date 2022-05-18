@@ -13,6 +13,7 @@
 
                 {% for project in projects %}
                     <li class="portfolio-item">
+                        <a target="_blank" href="{% url 'portfolio-item' id=project.id %}">
 
                         <img src="{{ project.images.first.image.url }}" class="img-responsive" alt="{{ project.images.first.title }}">
                         <figcaption class="mask">
@@ -21,10 +22,11 @@
                         </figcaption>
                         <ul class="external">
                             <li>
-                                <a href="{% url 'portfolio-item' id=project.id %}">
+                                <span>
                                     {% comment %} <i class="fa fa-link"></i> {% endcomment %}
                                     Ver
                                 </a>
+                            </a>
                             </li>
                         </ul>
                     </li>

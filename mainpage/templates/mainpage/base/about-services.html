@@ -5,24 +5,32 @@
             <div class="col-md-4 wow animated fadeInLeft">
                 <div class="recent-works">
                     <h3>{{ about_me.xp_title }}</h3>
-                    <div id="works">
+                    <div>
                         {{ about_me.professional_xp | safe }}
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-md-offset-1 wow animated fadeInRight">
+            <div class="col-md-3 col-md-offset-1 wow animated fadeInRight">
                 <div class="welcome-block">
-                    <h3>{{ about.welcome_title }}</h3>
                     <div class="message-body">
                         <img 
                             src="{{ about_me.avatar.url }}" 
                             class="pull-left" 
                             alt="member"
-                            style="width: 120px !important; height: 120px !important;"
+                            style="max-width: 120px !important;width: 120px !important; height: 120px !important;"
                         >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 wow animated fadeInRight">
+                <div class="welcome-block">
+                    <h3>{{ about_me.welcome_title }}</h3>
+                    <div class="message-body">
                         <p>{{ about_me.summary | safe }}</p>
                     </div>
-                    <a href="/about-me" class="btn btn-border btn-effect pull-right">Ler mais</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://whatsa.me/5542988765949/?t=Ol%C3%A1,%20vi%20seu%20portfolio%20e%20queria%20conversar" class="btn btn-border btn-effect pull-right">
+                        Ir para whats
+                    </a>
                 </div>
             </div>
         </div>
@@ -42,7 +50,7 @@
                 </p>
             </div>
             {% for service in services %}
-                <div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn">
+                <div style="margin-bottom: 15px;" class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn">
                     <div class="service-item">
                         <div class="service-icon">
                             <i class="{{ service.icon }} fa-3x"></i>
