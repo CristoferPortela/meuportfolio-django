@@ -1,8 +1,9 @@
 from django.db import models
 from django.db.models.fields import CharField
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
+
 
 class AboutMe(models.Model):
     """
@@ -22,21 +23,25 @@ class AboutMe(models.Model):
 
     professional_xp = models.TextField('Professional experience', default="")
 
-    welcome_title = models.CharField('title for the welcome message', max_length=155, default="")
-    xp_title = models.CharField(_("title for the experiencies section"), max_length=155, default="")
+    welcome_title = models.CharField(
+        'title for the welcome message', max_length=155, default="")
+    xp_title = models.CharField(
+        _("title for the experiencies section"), max_length=155, default="")
 
     avatar = models.ImageField(
-        'my pic', 
-        name="avatar", 
-        # width_field=150, 
-        # height_field=150, 
+        'my pic',
+        name="avatar",
+        # width_field=150,
+        # height_field=150,
         upload_to='uploads/%Y/%m/%d',
-        null=True
+        null=True,
+        blank=True
     )
 
     def __str__(self):
         return self.name
-    
+
+
 class Service(models.Model):
     """
     The services we offer
@@ -48,7 +53,7 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 class ProjectImage(models.Model):
     """
@@ -56,35 +61,46 @@ class ProjectImage(models.Model):
     """
 
     ROLES = (
-        ('featured','featured',),
-        ('secondary','secondary'),
+        ('featured', 'featured',),
+        ('secondary', 'secondary'),
     )
 
-    title = models.CharField('the title of the image', max_length=100, default="")
+    title = models.CharField('the title of the image',
+                             max_length=100, default="")
     image = models.ImageField('image for the project')
-    role = models.CharField('the role of the image in the page', max_length=20, choices=ROLES)
+    role = models.CharField(
+        'the role of the image in the page', max_length=20, choices=ROLES)
 
-    has_call_to_action = models.BooleanField('has a call to action button?', default=False, null=True, blank=True)
-    call_to_action_link = models.CharField('the call to action link', max_length=255, default="", null=True, blank=True)
-    call_to_action_text = models.CharField('the call to action text', max_length=100, default="", null=True, blank=True)
+    has_call_to_action = models.BooleanField(
+        'has a call to action button?', default=False, null=True, blank=True)
+    call_to_action_link = models.CharField(
+        'the call to action link', max_length=255, default="", null=True, blank=True)
+    call_to_action_text = models.CharField(
+        'the call to action text', max_length=100, default="", null=True, blank=True)
 
-    description_text = models.CharField('description of the image', max_length=255, default="", null=True)
+    description_text = models.CharField(
+        'description of the image', max_length=255, default="", null=True)
 
     def __str__(self):
         return self.title
+
 
 class Category(models.Model):
     """
     A category avaiable to set to the project
     """
 
-    title = models.CharField('title of the category', max_length=50, unique=True)
-    description = models.CharField('short description about the category', max_length=155)
+    title = models.CharField('title of the category',
+                             max_length=50, unique=True)
+    description = models.CharField(
+        'short description about the category', max_length=155)
 
-    icon = models.CharField('an icon to represent the category', max_length=100, default="", null=True)
+    icon = models.CharField(
+        'an icon to represent the category', max_length=100, default="", null=True)
 
     def __str__(self):
         return self.title
+
 
 class Project(models.Model):
     """
@@ -94,13 +110,15 @@ class Project(models.Model):
     title = models.CharField('name of project', max_length=100)
     short_description = models.CharField('short description', max_length=155)
 
-    full_description = models.TextField('the full description of the project', default="", null=True)
+    full_description = models.TextField(
+        'the full description of the project', default="", null=True)
 
     images = models.ManyToManyField(ProjectImage)
     category = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.title
+
 
 class ProductBenefits(models.Model):
     """
@@ -109,20 +127,24 @@ class ProductBenefits(models.Model):
 
     title = models.CharField(max_length=75)
     description = models.CharField('the description', max_length=255)
-    icon = models.CharField('define an icon', max_length=100, default="", null=True)
+    icon = models.CharField(
+        'define an icon', max_length=100, default="", null=True)
 
     def __str__(self):
         return self.title
+
 
 class Product(models.Model):
     """
     Represent the price of a kind of project, such as ecommerce, wordpress blog, etc.
     """
 
-    title = models.CharField('the title of the project kind', max_length=100, unique=True)
+    title = models.CharField(
+        'the title of the project kind', max_length=100, unique=True)
 
     min_price = models.FloatField('the minimun price', null=True, default=0)
-    avg_price = models.FloatField('an average price for the prouct', null=True, default=0)
+    avg_price = models.FloatField(
+        'an average price for the prouct', null=True, default=0)
 
     short_description = models.CharField('short description', max_length=100)
 
@@ -130,7 +152,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+
 class SocialMedia(models.Model):
     """
     My social medias
@@ -141,7 +164,8 @@ class SocialMedia(models.Model):
     link = models.CharField('the url for the social media', max_length=255)
 
     def __str__(self):
-        return self.media    
+        return self.media
+
 
 class Contact(models.Model):
     """
@@ -156,6 +180,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.subject
 
+
 class Slider(models.Model):
     """
     A full slider
@@ -168,36 +193,121 @@ class Slider(models.Model):
     def __str__(self):
         return self.name
 
+
 class MainPage(models.Model):
     """
     The full model of the main page
     """
 
-    title = models.CharField(_("Title of main page"), max_length=50)
-    slider = models.ForeignKey(Slider, verbose_name=_("choose a slider"), on_delete=models.CASCADE)
-    about_me = models.ForeignKey(AboutMe, verbose_name=_("choose an about me"), on_delete=models.CASCADE)
-    
-    services_title = models.CharField(_("servies section title"), max_length=155, default="serviços")
-    services_subtitle = models.CharField(_("services section description // subtitle"), max_length=155, default="")
+    main = models.BooleanField(
+        _('Main page?'),
+        default=False
+    )
 
-    services = models.ManyToManyField(Service, verbose_name=_("choose a service"))
-        
-    projects_title = models.CharField(_("projects section title"), max_length=155, default="Projetos")
-    projects_subtitle = models.CharField(_("projects section description // subtitle"), max_length=155, default="")
-    
-    projects = models.ManyToManyField(Project, verbose_name=_("chosse the projects"))
-    
-    products_title = models.CharField(_("products section title"), max_length=155, default="Valores")
-    products_subtitle = models.CharField(_("products section description // subtitle"), max_length=155, default="")
-    
-    products = models.ManyToManyField(Product, verbose_name=_("choose the products"))
-    
-    social_medias_title = models.CharField(_("social medias section title"), max_length=155, default="Redes sociais")
-    social_medias_subtitle = models.CharField(_("social medias section description // subtitle"), max_length=155, default="")
-    social_media_bg = models.ForeignKey(ProjectImage, on_delete=models.PROTECT, default="", blank=True, null=True)
+    title = models.CharField(
+        _("Title of main page"),
+        max_length=50
+    )
+    slider = models.ForeignKey(
+        Slider,
+        verbose_name=_("choose a slider"),
+        on_delete=models.CASCADE
+    )
+    about_me = models.ForeignKey(
+        AboutMe,
+        verbose_name=_("choose an about me"),
+        on_delete=models.CASCADE
+    )
 
-    social_medias = models.ManyToManyField(SocialMedia, verbose_name=_("choose the social medias"))
+    services_title = models.CharField(
+        _("servies section title"),
+        max_length=155,
+        default="serviços",
+        null=True,
+        blank=True
+    )
+    services_subtitle = models.CharField(
+        _("services section description // subtitle"),
+        max_length=155,
+        default="",
+        null=True,
+        blank=True
+    )
+
+    services = models.ManyToManyField(
+        Service,
+        verbose_name=_("choose a service"),
+        null=True,
+        blank=True
+    )
+
+    projects_title = models.CharField(
+        _("projects section title"),
+        max_length=155,
+        default="Projetos",
+        null=True,
+        blank=True
+    )
+    projects_subtitle = models.CharField(
+        _("projects section description // subtitle"),
+        max_length=155,
+        default="",
+        null=True,
+        blank=True
+    )
+
+    projects = models.ManyToManyField(
+        Project,
+        verbose_name=_("chosse the projects"),
+        null=True,
+        blank=True
+    )
+
+    products_title = models.CharField(
+        _("products section title"),
+        max_length=155,
+        default="",
+        null=True,
+        blank=True
+    )
+    products_subtitle = models.CharField(
+        _("products section description // subtitle"),
+        max_length=155,
+        default="",
+        null=True,
+        blank=True
+    )
+
+    products = models.ManyToManyField(
+        Product,
+        verbose_name=_("choose the products"),
+        null=True,
+        blank=True
+    )
+
+    social_medias_title = models.CharField(
+        _("social medias section title"),
+        max_length=155,
+        default="Redes sociais"
+    )
+
+    social_medias_subtitle = models.CharField(
+        _("social medias section description // subtitle"),
+        max_length=155,
+        default=""
+    )
+    social_media_bg = models.ForeignKey(
+        ProjectImage,
+        on_delete=models.PROTECT,
+        default="",
+        null=True,
+        blank=True
+    )
+
+    social_medias = models.ManyToManyField(
+        SocialMedia,
+        verbose_name=_("choose the social medias")
+    )
 
     def __str__(self):
         return self.title
-
