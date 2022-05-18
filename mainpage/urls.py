@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home, name='home'),
     path('portfolio/<int:id>', views.portfolio_item, name='portfolio-item'),
-    path('portfolio', views.portfolio, name='portfolio')
 ]
 
 if settings.DEBUG:
