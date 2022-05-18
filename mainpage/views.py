@@ -1,9 +1,11 @@
 from datetime import datetime
 from django.shortcuts import render
-from .models import AboutMe, Service, Project, Product, SocialMedia, Slider, MainPage
-from .forms import ContactForm
+from .models import MainPage
+# from .forms import ContactForm
 
 # Create your views here.
+
+
 def home(request):
     """
     Renders the home page
@@ -11,8 +13,6 @@ def home(request):
 
     main_page = MainPage.objects.first()
 
-    contact_form = ContactForm
-    
     return render(
         request,
         'mainpage/index.html',
@@ -24,7 +24,6 @@ def home(request):
             'products': main_page.products.all()[:3],
             'social_medias': main_page.social_medias.all()[:6],
             'social_media_bg': main_page.social_media_bg,
-            'contact_form': contact_form,
             'slider': main_page.slider.images.all(),
             'texts': {
                 'services_title': main_page.services_title,
@@ -39,6 +38,7 @@ def home(request):
         }
     )
 
+
 def portfolio_item(request, id):
     return render(
         request,
@@ -46,9 +46,3 @@ def portfolio_item(request, id):
         {'id': id}
     )
 
-def portfolio(request, id):
-    return render(
-        request,
-        'mainpage/portfolio.html',
-        {'id': id}
-    )
