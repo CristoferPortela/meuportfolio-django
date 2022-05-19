@@ -15,3 +15,5 @@ code/
 static/
 
 */__pycache__/*
+
+untracked
