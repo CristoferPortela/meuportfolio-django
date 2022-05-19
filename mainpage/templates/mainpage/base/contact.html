@@ -4,7 +4,7 @@
         <div class="row">
             <div class="sec-title text-center wow animated fadeInDown">
                 <h2>Contato</h2>
-                <p>Tem interesse em nos deixar uma mensagem ou pedir um orçamento?</p>
+                <p>Tem interesse em deixar uma mensagem ou pedir um orçamento?</p>
             </div>
             <div class="col-md-7 contact-form wow animated fadeInLeft">
               <p style="margin-right: 20px">
@@ -12,18 +12,21 @@
                   <br> Sinta-se a vontade para me enviar uma mensagem 
                   em qualquer das redes sociais citadas.
               </p>
-              {% comment %} <h4>
-                  Para facilitar:
+              <h4>
+                  Redes sociais:
               </h4>
               <ul>
                 {% for media in social_medias %}
                 <li>
-                    <a href="{{ media.link }}">
-                        {{ media.media }}
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=100022058751233">
+                        Facebook
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/cristoferportela/?igshid=YmMyMTA2M2Y=">
+                        Instagram
                     </a>
                 </li>
             {% endfor %}
-              </ul> {% endcomment %}
+              </ul> 
             </div>
             <div class="col-md-5 wow animated fadeInRight">
                 <address class="contact-details">
