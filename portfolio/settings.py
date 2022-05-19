@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import posixpath
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,18 +79,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ['DB'],#'postgres',
+#         'USER': os.environ['USER'],#'postgres',
+#         'PASSWORD': os.environ['PASS'],#'postgres',
+#         'HOST': os.environ['DATABASE_URL'],#'db_',
+#         'PORT': os.environ['PORT'],#5432,
+#         'URL': os.environ['DATABASE_URL']
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB'],#'postgres',
-        'USER': os.environ['USER'],#'postgres',
-        'PASSWORD': os.environ['PASS'],#'postgres',
-        'HOST': os.environ['DATABASE_URL'],#'db_',
-        'PORT': os.environ['PORT'],#5432,
-        'URL': os.environ['DATABASE_URL']
-    }
+    'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -122,5 +125,5 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 LOGIN_REDIRECT_URL = '/'
 
-MEDIA_ROOT=posixpath.join(*(BASE_DIR.split(os.path.sep) + ['uploads']))
-MEDIA_URL='/uploads/'
+MEDIA_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['uploads']))
+MEDIA_URL = '/uploads/'
