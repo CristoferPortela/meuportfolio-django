@@ -25,7 +25,9 @@ SECRET_KEY = '090a2dcb-de0a-4a5c-a2c2-fab91ee9ab3d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'warm-garden-50140.herokuapp.com'
+]
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
