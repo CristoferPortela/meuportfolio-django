@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.shortcuts import render
-from .models import MainPage
+from .models import MainPage, Project, ProjectImage, SocialMedia
 # from .forms import ContactForm
 
 # Create your views here.
@@ -40,9 +40,20 @@ def home(request):
 
 
 def portfolio_item(request, id):
+    project = Project.objects.get(pk=id)
+
+    images = project.images.all() 
+
+    social_medias = SocialMedia.objects.all()
+    social_media_bg = ProjectImage.objects.last()
+
     return render(
         request,
         'mainpage/portfolio.html',
-        {'id': id}
+        {
+            'project': project,
+            'slider': images,
+            'social_medias': social_medias,
+            'social_media_bg': social_media_bg,
+        }
     )
-

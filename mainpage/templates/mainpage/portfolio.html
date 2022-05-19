@@ -4,6 +4,11 @@
 {% block 'content' %}
 
 {% include 'mainpage/base/header.html' %}
+    
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+    {{ project.full_description | safe }}
+</div>
 
+{%include 'mainpage/base/social.html' %}
 {% include 'mainpage/base/footer.html' %}
 {% endblock %}
