@@ -27,7 +27,7 @@ SECRET_KEY = '090a2dcb-de0a-4a5c-a2c2-fab91ee9ab3d'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'warm-garden-50140.herokuapp.com'
+    'cristofer-portela.herokuapp.com'
 ]
 
 # Application references
