@@ -15,7 +15,11 @@
                     <li class="portfolio-item">
                         <a target="_blank" href="{% url 'portfolio-item' id=project.id %}">
 
-                        <img src="{{ project.images.first.image.url }}" class="img-responsive" alt="{{ project.images.first.title }}">
+                        <img 
+                            src="{{ project.images.first.image.url }}" 
+                            class="img-responsive" 
+                            alt="{{ project.images.first.title }}"
+                        >
                         <figcaption class="mask">
                             <h3>{{ project.title }}</h3>
                             <p>{{ project.short_description }}</p>
